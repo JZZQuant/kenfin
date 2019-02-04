@@ -3,10 +3,10 @@ from setuptools import setup, find_packages
 setup(name='GroundZero',
       version='1.0',
       description='README.md',
-      author='Raghav,Varun',
-      packages=['cyclopes'],
+      author='Raghava,Varun',
+      packages=['kenfin'],
       install_requires=[
-                     'selenium>=3.14',
+                     'selenium==3.141.0',
                      'kiteconnect==3.7.6']
 
       )
