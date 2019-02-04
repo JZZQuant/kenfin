@@ -3,7 +3,6 @@ from selenium import webdriver
 import selenium as se
 import time
 import urllib.parse as urlparse
-import os
 import argparse
 
 api_key = "zka582z590jag8yh"
@@ -44,7 +43,7 @@ class Configurator(object):
 
         # Hit the first url and get session_id
         self.driver.get(url)
-        session_id = self.parse_url("sess_id")
+        self.session_id = self.parse_url("sess_id")
 
         # login to first auth page
         user_id = self.driver.find_elements_by_tag_name("input")[0]
@@ -61,9 +60,10 @@ class Configurator(object):
         login.click()
 
         # return request token from final url
-        request_token = self.parse_url("request_token")
+        self.request_token = self.parse_url("request_token")
 
-        return session_id, request_token
+        self.data = kite.generate_session(api_secret=secret_key, request_token=self.request_token)
+        self.access_token = self.data["access_token"]
 
     def parse_url(self, key):
         time.sleep(20)
@@ -78,5 +78,7 @@ if __name__ == "__main__":
     parser.add_argument("-c", "--driver_path", help="Custom path to the chrome driver for headless running",
                         default=None)
     args = parser.parse_args()
-    session, request = Configurator(args.driver_path).get_config()
-    print("current login session id: '%s' and request token: '%s' " % (session, request))
+    config = Configurator(args.driver_path)
+    config.get_config()
+    print("current login : \n \t session id: %s \n  \t request token: %s \n \t access_token: %s " % (
+        config.session_id, config.request_token, config.access_token))
