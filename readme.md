@@ -16,3 +16,4 @@ A configurator object automatically logs into the kite web
 app without launching a browser and seamless stores a kite session  
 now each configurator has a unique request , access token and userid pwd  
 a service object would contain a unique configurator , random forest model  
+ 
