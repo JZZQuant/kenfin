@@ -2,6 +2,8 @@ from connector.configurator import Configurator
 
 #on windows you will need to pass path of chromedriver to configurator,
 # download the chrome driver from https://chromedriver.storage.googleapis.com/index.html?path=2.46/
+#config = Configurator(driver_path="c:\\downloads\\chromedriver.exe")
+
 config = Configurator()
 config.get_config()
 

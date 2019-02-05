@@ -5,9 +5,11 @@ import time
 import urllib.parse as urlparse
 import argparse
 
+from connector.auth_stack import AuthStack
+
 
 class Configurator(object):
-    def __init__(self, driver_path=None,api_key="zka582z590jag8yh",secret_key="9zdlmklim6rsakd2fkhay59hybsm5mw6",u_id= "RD0291",password="Divakar@1983"):
+    def __init__(self, driver_path=None):
         # look for the readme file to get automated headless chromedrive
         options = se.webdriver.ChromeOptions()
         options.add_argument('headless')
@@ -16,10 +18,11 @@ class Configurator(object):
         else:
             self.driver = se.webdriver.Chrome(executable_path=driver_path, chrome_options=options)
 
-        self.api_key = api_key
-        self.secret_key = secret_key
-        self.u_id = u_id
-        self.password = password
+        single_auth = AuthStack()
+        self.api_key = single_auth.api_key
+        self.secret_key = single_auth.secret_key
+        self.u_id = single_auth.u_id
+        self.password = single_auth.password
 
     def fill_second_factor_auth_question(self, index):
         question = self.driver.find_elements_by_tag_name('label')[index].text.lower()
