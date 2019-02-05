@@ -70,6 +70,7 @@ class Configurator(object):
         self.public_token = self.data["public_token"]
         self.user_id = self.data["user_id"]
         self.kite=kite
+        self.driver.quit()
 
     def parse_url(self, key):
         time.sleep(20)
