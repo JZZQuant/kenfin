@@ -10,3 +10,9 @@ or
 if you cant set systempath just pass it as an argument to the configurator  
 usage confirgurator:  
 python configurator.py -c /Users/vapnik/downloads/chromedriver
+
+Design Idea:  
+A configurator object automatically logs into the kite web  
+app without launching a browser and seamless stores a kite session  
+now each configurator has a unique request , access token and userid pwd  
+a service object would contain a unique configurator , random forest model  
