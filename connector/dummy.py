@@ -5,7 +5,6 @@ from connector.configurator import Configurator
 #config = Configurator(driver_path="c:\\downloads\\chromedriver.exe")
 
 config = Configurator()
-config.get_config()
 
 #you can even create a new kite object using kite = KiteConnect(api_key,secret_key)
 # and set the access token to config.access_token
