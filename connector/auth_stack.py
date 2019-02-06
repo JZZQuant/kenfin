@@ -13,7 +13,6 @@ class Singleton(type):
 
 class AuthStack(metaclass=Singleton):
     def __init__(self):
-        # in an ideal scenario these will come from a database
         self.__keys__ = [
             {'api_key': "zka582z590jag8yh", 'secret_key': "9zdlmklim6rsakd2fkhay59hybsm5mw6", 'u_id': "RD0291",
              'password': "Divakar@1983"}]
