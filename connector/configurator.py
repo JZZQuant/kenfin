@@ -44,7 +44,6 @@ class Configurator(object):
             self.user_id = self.data["user_id"]
 
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", "--driver_path", help="Custom path to the chrome driver for headless running",
@@ -52,5 +51,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     config = Configurator(args.driver_path)
     print(
-        "current login : \n \t session id: %s \n  \t request token: %s \n \t access_token: %s \n \t public_token: %s \n \t user_id: %s" % (
-            config.session_id, config.request_token, config.access_token, config.public_token, config.user_id))
+        "current login : \n \t session id: %s \n " 
+        " \t request token: %s \n \t access_token: %s \n" 
+        " \t public_token: %s \n \t user_id: %s" %
+        (config.session_id, config.request_token, config.access_token, config.public_token, config.user_id)
+    )

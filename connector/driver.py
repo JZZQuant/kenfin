@@ -3,6 +3,7 @@ import selenium as se
 import urllib.parse as urlparse
 import time
 
+
 class Driver():
     def __init__(self, driver_path=None):
         self.options = se.webdriver.ChromeOptions()
@@ -19,14 +20,14 @@ class Driver():
     def __exit__(self, type, value, traceback):
         self.__driver__.quit()
 
-    def parse_url(self,key ):
+    def parse_url(self,key):
         time.sleep(20)
         session_url = self.__driver__.current_url
         parsed = urlparse.urlparse(session_url)
         value = urlparse.parse_qs(parsed.query)[key][0]
         return value
 
-    def fill_second_factor_auth_question(self,index, ):
+    def fill_second_factor_auth_question(self,index):
         question = self.__driver__.find_elements_by_tag_name('label')[index].text.lower()
         answer = self.__driver__.find_elements_by_tag_name('input')[index]
         ans = ""
