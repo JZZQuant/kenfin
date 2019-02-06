@@ -7,6 +7,7 @@ setup(name='GroundZero',
       packages=['kenfin'],
       install_requires=[
                      'selenium==3.141.0',
-                     'kiteconnect==3.7.6']
+                     'kiteconnect==3.7.6',
+                     'flask==1.0.2']
 
       )
