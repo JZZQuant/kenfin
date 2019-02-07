@@ -28,3 +28,4 @@ class TestAuthStack(AuthStack):
     def __init__(self):
         self.__keys__ = [1, 2, 4, 5]
 
+

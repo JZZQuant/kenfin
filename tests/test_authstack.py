@@ -3,7 +3,7 @@ from unittest import TestCase
 from connector.auth_stack import AuthStack
 
 
-class TestAuthStack(TestCase):
+class AuthStackTests(TestCase):
     def test_pop(self):
         single_auth = AuthStack()
         single_auth.pop()
