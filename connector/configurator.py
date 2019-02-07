@@ -51,8 +51,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     config = Configurator(args.driver_path)
     print(
-        "current login : \n \t session id: %s \n " 
-        " \t request token: %s \n \t access_token: %s \n" 
+        "current login : \n \t session id: %s \n "
+        " \t request token: %s \n \t access_token: %s \n"
         " \t public_token: %s \n \t user_id: %s" %
         (config.session_id, config.request_token, config.access_token, config.public_token, config.user_id)
     )
