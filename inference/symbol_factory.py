@@ -1,6 +1,6 @@
 from connector.configurator import Configurator
 from itertools import cycle
-from scheduler.symbol import Symbol
+from inference.symbol import Symbol
 
 
 class SymbolFactory(object):

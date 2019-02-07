@@ -2,7 +2,8 @@ import datetime
 import schedule
 import time
 
-from scheduler.symbol_factory import SymbolFactory, AuthStack
+from connector.auth_stack import AuthStack
+from inference.symbol_factory import SymbolFactory
 
 
 def get_symbols():
