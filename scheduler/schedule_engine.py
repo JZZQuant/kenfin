@@ -2,7 +2,7 @@ import datetime
 import schedule
 import time
 
-from scheduler.symbol_factory import SymbolFactory
+from scheduler.symbol_factory import SymbolFactory, AuthStack
 
 
 def get_symbols():
@@ -11,12 +11,12 @@ def get_symbols():
 
 if __name__ == "__main__":
     # todo : need to be handled by a pipeline object for futher testability
-    symbol_factory = SymbolFactory(get_symbols())
+    symbol_factory = SymbolFactory(get_symbols(),AuthStack())
     i = 0
     for symbol in symbol_factory.symbols:
         schedule.every(1).minutes.do(symbol.symbol_action)
         # schedule to morning 9:30 and separate each symbol by a lapse of a second
-        schedule.jobs[-1].next_run = datetime.datetime.now().replace(hour=14, minute=48, second=i)
+        schedule.jobs[-1].next_run = datetime.datetime.now().replace(hour=9, minute=30, second=i)
         i += 15
 
     # look for any new tasks if they are there

@@ -4,7 +4,7 @@ from unittest import TestCase
 import schedule
 import time
 
-from scheduler.symbol_factory import TestSymbolFactory
+from scheduler.symbol_factory import TestSymbolFactory, TestAuthStack
 
 
 class TestSchedule(TestCase):
@@ -24,10 +24,10 @@ class TestSchedule(TestCase):
 
     def test_schedule_engine(self):
         symbol_factory = TestSymbolFactory(
-            [{"symbol": "a"}, {"symbol": "b"}, {"symbol": "c"}, {"symbol": "d"}, {"symbol": "e"}, {"symbol": "f"}, ])
+            [{"symbol": "a"}, {"symbol": "b"}, {"symbol": "c"}, {"symbol": "d"}, {"symbol": "e"}, {"symbol": "f"}, ],TestAuthStack())
         i = 0
         for symbol in symbol_factory.symbols:
-            schedule.every(1).minutes.do(symbol.symbol_action())
+            schedule.every(1).minutes.do(symbol.symbol_action)
             # schedule to morning 9:30 , and seperate each symbol by a lapse of a second
             schedule.jobs[-1].next_run = datetime.datetime.now() + datetime.timedelta(seconds=i)
             i += 2

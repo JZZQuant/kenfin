@@ -9,7 +9,7 @@ class Symbol(object):
         return "loaded model from pkl file"
 
     def symbol_action(self):
-        print("loaded data from kite and take action by infereing form the model")
+        print("Symbol loaded %s" % self.symbol)
 
     def load_data(self, symbol):
         return "loaded daily data in the morning"

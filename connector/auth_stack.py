@@ -24,13 +24,7 @@ class AuthStack(metaclass=Singleton):
         return len(self.__keys__) == 0
 
 
-# todo : need to make it testable
-class TestAuthStack(metaclass=Singleton):
+class TestAuthStack(AuthStack):
     def __init__(self):
         self.__keys__ = [1, 2, 4, 5]
 
-    def pop(self):
-        return self.__keys__.pop()
-
-    def is_empty(self):
-        return len(self.__keys__) == 0
