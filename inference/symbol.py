@@ -7,23 +7,26 @@ import talib as ta
 
 class Symbol(object):
     def __init__(self, symbol, configurator):
-        #todo : get daily jump
         self.symbol = munch.munchify(symbol)
         self.configurator = configurator
+        self.current_open = None
         with open(self.symbol.model_path, 'rb') as file:
             self.model = pickle.load(file)
         self.data, self.instrument_token = self.load_daily_data()
+        self.prev_closing = self.data.iloc[-1]
 
     def symbol_action(self):
         new_data = self.get_new_data()
         signal = "No updates in data"
-        # todo: looks clumsy needs a proper fix
+        # todo: looks clumsy needs a proper fix ,
         if new_data.shape[0] > 0 :
             new_data.date = new_data.date.apply(lambda a: a.replace(tzinfo=None))
             valid_new_entries = len(set(new_data.date).difference(set(self.data.date)))
             if valid_new_entries > 0:
                 self.data = self.data.append(new_data, ignore_index=False)
                 self.data = self.data.iloc[valid_new_entries:]
+                if self.current_open is None :
+                    self.current_open = self.data.iloc[-valid_new_entries]
                 signal = self.predict_market()
 
         # todo:add a logger functionality with various levels of verbosity
