@@ -11,27 +11,31 @@ class Symbol(object):
         self.configurator = configurator
         with open(self.symbol.model_path, 'rb') as file:
             self.model=pickle.load(file)
-        self.data = self.load_data()
+        self.data = self.load_daily_data()
 
     def symbol_action(self):
-        self.update_data()
-        signal=self.predict_market(self.data)
-        print("last data imput: %s" % str(self.data[-1].to_string()))
-        print("got a signal %s" % signal)
+        new_data = self.get_new_data()
+        signal = "No updates in data"
+        if new_data.shape[0]>0:
+            new_data.date=new_data.date.apply(lambda a:a.replace(tzinfo=None))
+            self.data=self.data.append(new_data,ignore_index=False)
+            self.data=self.data.iloc[1:]
+            signal=self.predict_market(self.data)
 
-    def update_data(self):
-        from_time=self.data.index[-1]
+        print("last data imput: %s" % str(self.data.iloc[-1].to_string()))
+        print("got a signal %s" % signal)
+        print("current time : %s \n" % str(datetime.now()))
+
+    def get_new_data(self):
+        from_time=list(self.data.date)[-1]
         to_time=datetime.today()
         new_data=self.configurator.kite.historical_data(instrument_token=self.instrument_token,
                                                         from_date=from_time,to_date=to_time,
                                                         interval=self.symbol.interval, continuous=0)
         new_data=pd.DataFrame(new_data)
-        new_data.date=new_data.date.apply(lambda a:a.replace(tzinfo=None))
-        new_data.set_index('date',inplace=True)
-        self.data=self.data.append(new_data,ignore_index=False)
-        self.data=self.data.iloc[1:]
+        return new_data
 
-    def load_data(self):
+    def load_daily_data(self):
         trade_ce=False
         trade_pe=False
         order_id=None
@@ -75,11 +79,8 @@ class Symbol(object):
         # Returns
         data=data.copy()
         col1=set(data.columns)
-        # data.date=data.date.map( lambda z:z.replace('+05:30',''))
-        # data.date=pd.to_datetime(data.date)
         data.set_index(data.date,inplace=True)
         data['Hour']=data.index.hour
-        #    data['Minute']=data.index.minute
         data['ret1'] = data.close.pct_change()
         data['ret2'] = data.close.pct_change(2)
         data['ret5'] = data.close.pct_change(5)
