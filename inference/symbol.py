@@ -55,6 +55,7 @@ class Symbol(object):
         df = df.iloc[-min_len:]
         return df, contract["instrument_token"]
 
+    #todo : look for a cleaner way for doing etl
     def transform_features(self,data):
         data.drop_duplicates(subset='date', keep="first",inplace=True)
         feature_frame=pd.DataFrame()
