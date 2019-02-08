@@ -11,7 +11,7 @@ class Singleton(type):
         return cls._instances[cls]
 
 
-class AuthStack(metaclass=Singleton):
+class AuthSingletonStack(metaclass=Singleton):
     def __init__(self):
         self.__keys__ = [
             {'api_key': "zka582z590jag8yh", 'secret_key': "9zdlmklim6rsakd2fkhay59hybsm5mw6", 'u_id': "RD0291",
@@ -24,7 +24,7 @@ class AuthStack(metaclass=Singleton):
         return len(self.__keys__) == 0
 
 
-class TestAuthStack(AuthStack):
+class TestAuthSingletonStack(AuthSingletonStack):
     def __init__(self):
         self.__keys__ = [1, 2, 4, 5]
 

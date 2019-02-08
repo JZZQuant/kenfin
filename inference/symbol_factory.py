@@ -7,15 +7,11 @@ class SymbolFactory(object):
     def __init__(self, symbols, auth_singleton_stack):
         self.configs = auth_singleton_stack
         self.executors = cycle(self.__get_executors__())
-        self.symbols = self.__map_executors__(symbols)
+        self.symbols = [Symbol(symbol, next(self.executors)) for symbol in symbols]
 
     def __get_executors__(self):
         while not self.configs.is_empty():
             yield Configurator()
-
-    def __map_executors__(self, symbols):
-        for symbol in symbols:
-            yield Symbol(symbol, next(self.executors))
 
 
 class TestSymbolFactory(SymbolFactory):

@@ -4,7 +4,7 @@ from unittest import TestCase
 import schedule
 import time
 
-from connector.auth_stack import TestAuthStack
+from connector.auth_stack import TestAuthSingletonStack
 from inference.symbol_factory import TestSymbolFactory
 
 class ScheduleTests(TestCase):
@@ -24,7 +24,7 @@ class ScheduleTests(TestCase):
 
     def test_schedule_engine(self):
         symbol_factory = TestSymbolFactory(
-            [{"symbol": "a"}, {"symbol": "b"}, {"symbol": "c"}, {"symbol": "d"}, {"symbol": "e"}, {"symbol": "f"}, ],TestAuthStack())
+            [{"symbol": "a","atrr1":2}, {"symbol": "b","attr2":2}, {"symbol": "c"}, {"symbol": "d"}, {"symbol": "e"}, {"symbol": "f"}, ],TestAuthSingletonStack())
 
         i = 0
         now = datetime.datetime.now()

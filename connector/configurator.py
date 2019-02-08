@@ -1,7 +1,7 @@
 from kiteconnect import KiteConnect
 import time
 import argparse
-from connector.auth_stack import AuthStack
+from connector.auth_stack import AuthSingletonStack
 from connector.driver import Driver
 
 
@@ -11,7 +11,7 @@ class Configurator(object):
 
         driver = Driver()
         with driver as d:
-            single_auth = AuthStack().pop()
+            single_auth = AuthSingletonStack().pop()
             self.api_key = single_auth["api_key"]
             self.secret_key = single_auth["secret_key"]
             self.u_id = single_auth["u_id"]

@@ -2,17 +2,17 @@ import datetime
 import schedule
 import time
 
-from connector.auth_stack import AuthStack
+from connector.auth_stack import AuthSingletonStack
 from inference.symbol_factory import SymbolFactory
 
 
 def get_symbols():
-    return [{"symbol": "icici"}]
+    return [{"symbol_name": "ICICI","interval":"minute","model_path": "../resources/pkls/icici.pkl"}]
 
 
 if __name__ == "__main__":
     # todo : need to be handled by a pipeline object for futher testability
-    symbol_factory = SymbolFactory(get_symbols(),AuthStack())
+    symbol_factory = SymbolFactory(get_symbols(), AuthSingletonStack())
     i = 0
     for symbol in symbol_factory.symbols:
         schedule.every(1).minutes.do(symbol.symbol_action)
