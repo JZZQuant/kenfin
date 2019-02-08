@@ -18,4 +18,3 @@ class TestSymbolFactory(SymbolFactory):
     def __get_executors__(self):
         while not self.configs.is_empty():
             yield self.configs.pop()
-

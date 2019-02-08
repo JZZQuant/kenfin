@@ -7,7 +7,7 @@ from inference.symbol_factory import SymbolFactory
 
 
 def get_symbols():
-    return [{"symbol_name": "ICICI","interval":"minute","model_path": "../resources/pkls/icici.pkl"}]
+    return [{"symbol_name": "ICICI", "interval": "minute", "model_path": "../resources/pkls/icici.pkl"}]
 
 
 if __name__ == "__main__":
