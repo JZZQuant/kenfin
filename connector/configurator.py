@@ -42,6 +42,7 @@ class Configurator(object):
             self.access_token = self.data["access_token"]
             self.public_token = self.data["public_token"]
             self.user_id = self.data["user_id"]
+            self.nfo = self.kite.instruments("NFO")
 
 
 if __name__ == "__main__":

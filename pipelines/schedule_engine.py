@@ -7,11 +7,12 @@ from inference.symbol_factory import SymbolFactory
 
 
 def get_symbols():
-    return [{"symbol_name": "ICICI", "interval": "minute", "model_path": "../resources/pkls/icici.pkl"}]
+    return [{"symbol_name": "ICICI", "interval": "minute", "model_path": "../resources/pkls/icici.pkl","instrument_type":"FUT"}]
 
 
 if __name__ == "__main__":
     # todo : need to be handled by a pipeline object for futher testability
+    #todo :fix the 9:30 bug , if it starts later it has to be set to current time
     symbol_factory = SymbolFactory(get_symbols(), AuthSingletonStack())
     i = 0
     for symbol in symbol_factory.symbols:

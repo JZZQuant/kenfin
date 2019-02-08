@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
 
+#todo : create a new environment with pip requirements
 setup(name='GroundZero',
       version='1.0',
       description='README.md',
