@@ -17,6 +17,7 @@ class Symbol(object):
     def symbol_action(self):
         new_data = self.get_new_data()
         signal = "No updates in data"
+        # todo: looks clumsy needs a proper fix
         if new_data.shape[0] > 0 :
             new_data.date = new_data.date.apply(lambda a: a.replace(tzinfo=None))
             valid_new_entries = len(set(new_data.date).difference(set(self.data.date)))
