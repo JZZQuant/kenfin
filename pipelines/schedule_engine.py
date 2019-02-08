@@ -9,7 +9,7 @@ from inference.symbol_factory import SymbolFactory
 def get_tradables():
     return [{"symbol_name": "ICICI", "interval": "minute", "model_path": "../resources/pkls/icici.pkl","instrument_type":"FUT"}]
 
-
+#todo :need lot more readable names
 if __name__ == "__main__":
     # todo : need to be handled by a pipeline object for futher testability
     #todo :fix the 9:30 bug , if it starts later it has to be set to current time
