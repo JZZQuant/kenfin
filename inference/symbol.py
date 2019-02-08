@@ -20,7 +20,7 @@ class Symbol(object):
         print("got a signal %s" % signal)
 
     def update_data(self):
-        from_time=self.data.iloc[-1].date
+        from_time=self.data.index[-1]
         to_time=datetime.today()
         new_data=self.configurator.kite.historical_data(instrument_token=self.instrument_token,
                                                         from_date=from_time,to_date=to_time,
@@ -28,7 +28,7 @@ class Symbol(object):
         new_data=pd.DataFrame(new_data)
         new_data.date=new_data.date.apply(lambda a:a.replace(tzinfo=None))
         new_data.set_index('date',inplace=True)
-        self.data=self.data.append(new_data,ignore_index=True)
+        self.data=self.data.append(new_data,ignore_index=False)
         self.data=self.data.iloc[1:]
 
     def load_data(self):
