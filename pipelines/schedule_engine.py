@@ -13,6 +13,7 @@ def get_tradables():
 if __name__ == "__main__":
     # todo : need to be handled by a pipeline object for futher testability
     #todo :fix the 9:30 bug , if it starts later it has to be set to current time
+    # todo : also set a closing time for trading
     symbol_factory = SymbolFactory(get_tradables(), AuthSingletonStack())
     i = 0
     for symbol in symbol_factory.symbols:
