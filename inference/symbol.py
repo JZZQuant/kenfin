@@ -17,6 +17,7 @@ class Symbol(object):
 
     def symbol_action(self):
         new_data = self.get_new_data()
+        #todo : needs status messages for all possible four responses of the signal
         signal = "No updates in data"
         # todo: looks clumsy needs a proper fix ,
         if new_data.shape[0] > 0 :
@@ -59,6 +60,7 @@ class Symbol(object):
         return df, contract["instrument_token"]
 
     #todo : look for a cleaner way for doing etl
+    #todo : etl part should be automated and kept out of implementation
     def transform_features(self,data):
         data.drop_duplicates(subset='date', keep="first",inplace=True)
         feature_frame=pd.DataFrame()
