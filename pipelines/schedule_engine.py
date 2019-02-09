@@ -9,21 +9,23 @@ from inference.symbol_factory import SymbolFactory
 def get_tradables():
     return [{"symbol_name": "ICICI", "interval": "minute", "model_path": "../resources/pkls/icici.pkl","instrument_type":"FUT"}]
 
-#todo :need lot more readable names
 if __name__ == "__main__":
     # todo : need to be handled by a pipeline object for futher testability
-    #todo :fix the 9:30 bug , if it starts later it has to be set to current time
-    # todo : also set a closing time for trading
     symbol_factory = SymbolFactory(get_tradables(), AuthSingletonStack())
     i = 0
+    now=datetime.datetime.now()
+    start = datetime.datetime.now().replace(hour=9, minute=30,second=0)
+    close = datetime.datetime.now().replace(hour=15, minute=30,second=0)
+    next_run = max(start,now)
+    # if its post 3:30 schedule it for tomorrow
+    if next_run > close:
+        next_run = start+ datetime.timedelta(days=1)
     for symbol in symbol_factory.symbols:
         schedule.every(1).minutes.do(symbol.symbol_action)
-        # schedule to morning 9:30 and separate each symbol by a lapse of a second
-        schedule.jobs[-1].next_run = datetime.datetime.now().replace(hour=9, minute=30, second=i)
+        schedule.jobs[-1].next_run = next_run.replace(second=i)
         i += 15
 
     # look for any new tasks if they are there
-    while 1:
+    while datetime.datetime.now() < close:
         schedule.run_pending()
-        # for now 15 seconds is good but ideally this should be decided by the number of lapses in time gap
-        time.sleep(15)
+        time.sleep(1)
