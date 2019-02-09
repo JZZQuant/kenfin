@@ -55,7 +55,7 @@ class Symbol(object):
                                                                  interval=self.symbol.interval, continuous=0))
         df.date = df.date.apply(lambda a: a.replace(tzinfo=None))
         X = self.transform_features(df)
-        min_len = (len(df) - len(X)) + 1
+        min_len = (len(df) - len(X)) + 10 # adding more data to handle duplicates
         df = df.iloc[-min_len:]
         return df, contract["instrument_token"]
 
