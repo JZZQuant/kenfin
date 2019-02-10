@@ -1,13 +1,13 @@
 import datetime
 import schedule
 import time
-
+from etl.transformations import *
 from connector.auth_stack import AuthSingletonStack
 from inference.symbol_factory import SymbolFactory
 
 
 def get_tradables():
-    return [{"symbol_name": "ICICI", "interval": "minute", "model_path": "../resources/pkls/icici.pkl","instrument_type":"FUT"}]
+    return [{"symbol_name": "ICICI", "interval": "minute", "model_path": "../resources/pkls/icici.pkl","instrument_type":"FUT" , "transformation" : icic_fut_transform }]
 
 if __name__ == "__main__":
     # todo : need to be handled by a pipeline object for futher testability
