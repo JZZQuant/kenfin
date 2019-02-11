@@ -73,3 +73,7 @@ class Symbol(object):
     def predict_market(self):
         X = self.symbol.transformation(self.data)
         return self.model.predict(X)[-1]
+
+    def symbol_refresh(self):
+        pass
+

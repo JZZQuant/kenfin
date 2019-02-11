@@ -1,3 +1,4 @@
+import time
 from unittest import TestCase
 
 from connector.auth_stack import AuthSingletonStack
