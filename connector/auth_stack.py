@@ -27,5 +27,3 @@ class AuthSingletonStack(metaclass=Singleton):
 class TestAuthSingletonStack(AuthSingletonStack):
     def __init__(self):
         self.__keys__ = [1, 2, 4, 5]
-
-

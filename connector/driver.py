@@ -3,6 +3,8 @@ import selenium as se
 import urllib.parse as urlparse
 import time
 
+from logger.heirarchical_logger import info
+
 
 class Driver():
     def __init__(self, driver_path=None):
@@ -21,8 +23,9 @@ class Driver():
         self.__driver__.quit()
 
     def parse_url(self, key):
-        time.sleep(20)
+        time.sleep(60)
         session_url = self.__driver__.current_url
+        info("current url : %s " % str(session_url))
         parsed = urlparse.urlparse(session_url)
         value = urlparse.parse_qs(parsed.query)[key][0]
         return value
