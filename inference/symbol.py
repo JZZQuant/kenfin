@@ -36,7 +36,7 @@ class Symbol(object):
             info("No valid updates to data")
         else:
             info("got a signal: %s" % signal)
-        debug("last data input: \n %s" % str(self.data.iloc[-1].to_string()))
+        debug("last data input: \n%s" % str(self.data.iloc[-1].to_string()))
 
     def get_new_data(self):
         from_time = list(self.data.date)[-1]
