@@ -1,7 +1,7 @@
 import pandas as pd
 import talib as ta
 
-def icic_fut_transform(self, data):
+def icic_fut_transform(data):
     data.drop_duplicates(subset='date', keep="first", inplace=True)
     feature_frame = pd.DataFrame()
     feature_frame['Hour'] = data['date'].apply(lambda x: x.hour)
