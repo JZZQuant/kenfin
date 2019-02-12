@@ -48,7 +48,7 @@ class Symbol(object):
             return pd.DataFrame(self.configurator.kite.historical_data(instrument_token=token,
                                                                        from_date=from_time, to_date=to_time,
                                                                        interval=self.symbol.interval, continuous=0))
-        except kiteconnect.exceptions.NetworkException as e:
+        except Exception as e:
             error(e)
             return pd.DataFrame()
 
@@ -73,7 +73,4 @@ class Symbol(object):
     def predict_market(self):
         X = self.symbol.transformation(self.data)
         return self.model.predict(X)[-1]
-
-    def symbol_refresh(self):
-        pass
 
