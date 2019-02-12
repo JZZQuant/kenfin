@@ -16,7 +16,3 @@ class AuthSingletonStack:
     def __reset__():
         AuthSingletonStack.__keys__ = settings.keys()
 
-
-class TestAuthSingletonStack(AuthSingletonStack):
-    def __init__(self):
-        self.__keys__ = [1, 2, 4, 5]

@@ -21,7 +21,6 @@ class Symbol(object):
 
     def symbol_action(self):
         new_data = self.get_new_data()
-        # todo: looks clumsy needs a proper fix ,
         signal = None
         if new_data.shape[0] > 0:
             new_data.date = new_data.date.apply(lambda a: a.replace(tzinfo=None))
