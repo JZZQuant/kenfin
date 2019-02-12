@@ -50,7 +50,7 @@ if __name__ == "__main__":
     parser.add_argument("-c", "--driver_path", help="Custom path to the chrome driver for headless running",
                         default=None)
     args = parser.parse_args()
-    config = Configurator(AuthSingletonStack().pop(),args.driver_path)
+    config = Configurator(args.driver_path)
     print(
         "current login : \n \t session id: %s \n "
         " \t request token: %s \n \t access_token: %s \n"

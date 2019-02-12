@@ -1,6 +1,4 @@
 import pickle
-
-import kiteconnect
 import munch
 from datetime import datetime, timedelta
 import time
