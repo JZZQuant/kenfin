@@ -3,11 +3,14 @@ import munch
 from datetime import datetime, timedelta
 import time
 import pandas as pd
+
+from etl.transformations import transformations
 from logger.heirarchical_logger import info, debug, error
 
 
 class Symbol(object):
     def __init__(self, symbol, configurator):
+        symbol["transformation"] = transformations[symbol["transformation"]]
         self.symbol = munch.munchify(symbol)
         self.configurator = configurator
         self.current_open = None

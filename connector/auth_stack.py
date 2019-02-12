@@ -1,30 +1,20 @@
-from weakref import WeakValueDictionary
+import settings
 
 
-class Singleton(type):
-    _instances = WeakValueDictionary()
+class AuthSingletonStack:
+    __keys__ = settings.keys()
 
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            instance = super(Singleton, cls).__call__(*args, **kwargs)
-            cls._instances[cls] = instance
-        return cls._instances[cls]
+    @staticmethod
+    def pop():
+        return AuthSingletonStack.__keys__.pop()
 
+    @staticmethod
+    def is_empty():
+        return len(AuthSingletonStack.__keys__) == 0
 
-class AuthSingletonStack(metaclass=Singleton):
-    def __init__(self):
-        self.__reset__()
-
-    def pop(self):
-        return self.__keys__.pop()
-
-    def is_empty(self):
-        return len(self.__keys__) == 0
-
-    def __reset__(self):
-        self.__keys__ = [
-            {'api_key': "zka582z590jag8yh", 'secret_key': "9zdlmklim6rsakd2fkhay59hybsm5mw6", 'u_id': "RD0291",
-             'password': "Divakar@1983"}]
+    @staticmethod
+    def __reset__():
+        AuthSingletonStack.__keys__ = settings.keys()
 
 
 class TestAuthSingletonStack(AuthSingletonStack):

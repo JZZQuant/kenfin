@@ -1,6 +1,7 @@
 import pandas as pd
 import talib as ta
 
+
 def icic_fut_transform(data):
     data.drop_duplicates(subset='date', keep="first", inplace=True)
     feature_frame = pd.DataFrame()
@@ -94,3 +95,6 @@ def icic_fut_transform(data):
     feature_frame['Jump30'] = data.open - data.close.shift(30)
 
     return feature_frame.dropna()
+
+
+transformations = {"icic_fut_transform": icic_fut_transform}
