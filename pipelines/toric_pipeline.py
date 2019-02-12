@@ -33,7 +33,6 @@ class ToricPipeline(object):
             schedule.run_pending()
             time.sleep(self.execution_heart_beat)
 
-        # todo : need to log here and break for now
         while datetime.now() > close:
             time.sleep(10)
             info("Done with daily execution: breaking out of the inner circle")

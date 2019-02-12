@@ -2,7 +2,6 @@ from connector.tradables import tradables
 from connector.auth_stack import AuthSingletonStack
 from inference.symbol_factory import SymbolFactory
 from pipelines.toric_pipeline import ToricPipeline
-import sys
 
 if __name__ == "__main__":
     while True:
