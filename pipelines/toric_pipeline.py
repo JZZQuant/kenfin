@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 
 import schedule
 
+from logger.heirarchical_logger import info
+
 
 class ToricPipeline(object):
     def __init__(self, start_time, end_time, jobs, intra_action_delta=15, execution_heart_beat=1,
@@ -31,9 +33,11 @@ class ToricPipeline(object):
             schedule.run_pending()
             time.sleep(self.execution_heart_beat)
 
+        # todo : need to log here and break for now
         while datetime.now() > close:
             time.sleep(10)
-
+            info("Done with daily execution: breaking out of the inner circle")
+            break
 
     def clear(self):
         schedule.clear()
