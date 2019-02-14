@@ -34,7 +34,6 @@ class ToricPipeline(object):
             time.sleep(self.execution_heart_beat)
 
         while datetime.now() > close:
-            time.sleep(10)
             info("Done with daily execution: breaking out of the inner circle")
             break
 
