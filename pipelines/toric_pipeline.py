@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 import schedule
 
+from connector.auth_stack import AuthSingletonStack
 from logger.heirarchical_logger import info
 
 
@@ -19,6 +20,7 @@ class ToricPipeline(object):
     def trigger(self):
         i = 0
         now = datetime.now()
+        tomorrow = (datetime.today() + timedelta(days=1)).replace(hour=1)
         start = now.replace(hour=self.start_time[0], minute=self.start_time[1], second=self.start_time[2])
         close = now.replace(hour=self.end_time[0], minute=self.end_time[1], second=self.end_time[2])
         next_run = max(start, now)
@@ -33,9 +35,10 @@ class ToricPipeline(object):
             schedule.run_pending()
             time.sleep(self.execution_heart_beat)
 
-        while datetime.now() > close:
-            info("Done with daily execution: breaking out of the inner circle")
-            break
-
-    def clear(self):
         schedule.clear()
+        AuthSingletonStack.__reset__()
+        while close < datetime.now() < tomorrow:
+            info("Done with daily execution: breaking out of the inner circle")
+            # uncomment this and comment the break in case this program where to run forever,
+            # time.sleep(30)
+            break
