@@ -1,5 +1,5 @@
-start_time = (9, 30, 0)
-end_time = (15, 30, 0)
+start_time = (9, 29, 0)
+end_time = (15, 31, 0)
 
 def keys ():
     return [{'api_key': "zka582z590jag8yh", 'secret_key': "9zdlmklim6rsakd2fkhay59hybsm5mw6", 'u_id': "RD0291",
